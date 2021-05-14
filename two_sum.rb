@@ -34,15 +34,13 @@ end #nlogn
 def two_sum?(arr, target_sum)
     hash = {}
     arr.each_with_index do |ele, idx| 
-        return true if hash.has_key?(ele) && ele + ele == target_sum
+        # return true if hash.has_key?(ele) && ele + ele == target_sum
+        return true if hash.has_key?(target_sum - ele)
         hash[ele] = idx
-    end
-    hash.each do |k, v|
-        return true if hash.has_key?(target_sum - k) && k + k != target_sum
     end
     false
 end
 
-arr = [0, 1, 5,7, 11, 8, 13, 4]
+arr = [0, 1, 5 ,7, 11, 8, 13, 4]
 p two_sum?(arr, 12) # => should be true
 p two_sum?(arr, 10) # => should be false
