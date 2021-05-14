@@ -22,8 +22,22 @@ def second_anagram?(str1, str2)
 end
 
 def third_anagram?(str1, str2)
+    chars1 = str1.chars.sort
+    chars2 = str2.chars.sort
+
+    chars1 == chars2
     
 end
 
-# p second_anagram?("gizmo", "sally")    #=> false
-# p second_anagram?("elvis", "lives")    #=> true
+def fourth_anagram?(str1, str2)
+    hash1 = Hash.new(0)
+    hash2 = Hash.new(0)
+
+    str1.each_char {|chars| hash1[chars] += 1}
+    str2.each_char {|chars| hash2[chars] += 1}
+
+    hash1 == hash2
+end
+
+p fourth_anagram?("gizmo", "sally")    #=> false
+p fourth_anagram?("elvis", "lives")    #=> true
