@@ -34,19 +34,34 @@ end
 # list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
 # p my_min(list)  # =>  -5
 
+# def largest_contiguous_subsum(list)
+#     possible_subsets = []
+#     (0...list.length).each do |i|
+#         (i...list.length).each do |j|
+#             possible_subsets << list[i..j]
+#         end
+#     end
+#     largest = 0
+#     possible_subsets.each do |subset|
+#         sum = subset.sum
+#         largest = sum if sum > largest
+#     end
+#     largest
+# end
+
 def largest_contiguous_subsum(list)
-    possible_subsets = []
-    (0...list.length).each do |i|
-        (i...list.length).each do |j|
-            possible_subsets << list[i..j]
+    largest_sum = 0
+    current_sum = 0
+    list.each do |ele|
+        if ele < 0
+            largest_sum = current_sum if current_sum > largest_sum
+            current_sum = 0 
+            next
         end
+        current_sum += ele
     end
-    largest = 0
-    possible_subsets.each do |subset|
-        sum = subset.sum
-        largest = sum if sum > largest
-    end
-    largest
+    current_sum  > largest_sum ? current_sum : largest_sum
+
 end
 
 list = [5, 3, -7]
